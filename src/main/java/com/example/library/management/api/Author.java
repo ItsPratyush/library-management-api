@@ -1,21 +1,24 @@
 package com.example.library.management.api;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
-@Entity @Table(name = "authors") @Data
+@Entity @Data
 public class Author {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+	private Long id;
 	
-	String title;
-	String Author;
+	private String title;
+	private String author;
 	
-	Boolean isAvailable;
+	@OneToMany(mappedBy = "author")
+	private List<Book> books;
 
 }
